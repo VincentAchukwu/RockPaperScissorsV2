@@ -25,13 +25,19 @@ class RPS(object):
 
     def getScoreLimit(self):
 
-        userIn = input("First to how many wins?: ")   # user chooses how many games to play / score limit
+        # user chooses how many games to play / score limit
+        userIn = input("First to how many wins?: ")
 
         # this loop runs only while the user inputs a non numeric character(s)
-        # PROBLEM: WHAT IF USER INPUTS ALPHANUMERIC CHARACTERS
-        while userIn.isalpha():
-            userIn = input("Invalid character. Please enter a score limit: ")
-        return int(userIn)
+        # handling alphanumeric input via try/except clauses
+        while True:
+            try:
+                scoreLimit = int(userIn)
+                break
+            except ValueError:
+                userIn = input("Invalid character. Please enter a score limit: ")
+
+        return scoreLimit
 
     def play(self, scoreLimit):
 
